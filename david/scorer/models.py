@@ -44,3 +44,7 @@ class ProbabilityAndStatistics(models.Model):
     rollNo = models.PositiveIntegerField
     grade = models.CharField(max_length=2)
 
+class DataStructures(models.Model):
+    id = models.Field(primary_key = True)
+    rollNo = models.PositiveIntegerField
+    grade = models.CharField(max_length=2)
