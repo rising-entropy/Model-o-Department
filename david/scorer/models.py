@@ -18,6 +18,7 @@ class Student(models.Model):
     lName = models.CharField(max_length=50)
     year = models.PositiveIntegerField
     branch = models.CharField(max_length=50)
+    rollNo = models.PositiveIntegerField
 
 class DiscreteMath(models.Model):
     id = models.Field(primary_key = True)
