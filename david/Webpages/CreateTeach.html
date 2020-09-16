@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Student Score</title>
+</head>
+<body>
+    <h3>Enter The Score</h3>
+    <form action="enterScore" method="post">
+        <label for="rollNo">Enter Roll No.: </label>
+        <input type="number" name="rollNo" id="rollNo">
+        <label for="grade">Enter The Grade: </label>
+        <input type="text" name="grade" id="grade" maxlength="2">
+        <button type="submit">Submit</button>
+    </form>
+    <br>
+    <br>
+    <h4>Entered Data: </h4>
+    <p class="RN">Roll Number: {{ rollNo }}</p><br>
+    <p class="Subject">Subject: {{ subject }}</p><br>
+    <p class="Grade">Grade: {{ grade }}</p><br>
+    
+
+</body>
+</html>
