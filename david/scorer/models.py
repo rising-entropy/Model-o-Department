@@ -18,33 +18,10 @@ class Student(models.Model):
     lName = models.CharField(max_length=50)
     year = models.PositiveIntegerField
     branch = models.CharField(max_length=50)
-
-class DiscreteMath(models.Model):
-    id = models.Field(primary_key = True)
     rollNo = models.PositiveIntegerField
-    grade = models.CharField(max_length=2)
-
-class DataCommunication(models.Model):
-    id = models.Field(primary_key = True)
-    rollNo = models.PositiveIntegerField
-    grade = models.CharField(max_length=2)
-
-class ComputerOrganisationArchitecture(models.Model):
-    id = models.Field(primary_key = True)
-    rollNo = models.PositiveIntegerField
-    grade = models.CharField(max_length=2)
-
-class SoftwareEngineering(models.Model):
-    id = models.Field(primary_key = True)
-    rollNo = models.PositiveIntegerField
-    grade = models.CharField(max_length=2)
-
-class ProbabilityAndStatistics(models.Model):
-    id = models.Field(primary_key = True)
-    rollNo = models.PositiveIntegerField
-    grade = models.CharField(max_length=2)
-
-class DataStructures(models.Model):
-    id = models.Field(primary_key = True)
-    rollNo = models.PositiveIntegerField
-    grade = models.CharField(max_length=2)
+    DMgrade = models.CharField(max_length=2, default="NA")
+    DCgrade = models.CharField(max_length=2, default="NA")
+    COAgrade = models.CharField(max_length=2, default="NA")
+    SEgrade = models.CharField(max_length=2, default="NA")
+    PaSgrade = models.CharField(max_length=2, default="NA")
+    DSgrade = models.CharField(max_length=2, default="NA")
