@@ -1,8 +1,10 @@
+
 from django.contrib import admin
-from django.urls import path,include
-import david.views as views
+from django.conf.urls.static import static
+from django.conf import settings
+from django.urls import path, include
 
 urlpatterns = [
-    path('',views.landingPage),
     path('admin/', admin.site.urls),
+    path('',include('scorer.urls')),
 ]
