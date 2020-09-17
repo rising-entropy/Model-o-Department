@@ -28,6 +28,8 @@
 				<h3>Sign In</h3>
 			</div>
 			<div class="card-body">
+			<!--Invalid Login Credentials. Please Try Again-->
+				<p class="status" style="text-align: center; color: white;font-size: 0.7rem;">{{ errorStatement }}</p>
 				<form action="/api/v1/login" method="POST">
 					 {% csrf_token %}
 					<div class="input-group form-group">
