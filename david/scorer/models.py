@@ -10,6 +10,8 @@ class Teacher(models.Model):
     department = models.CharField(max_length=50)
     designation = models.CharField(max_length=50)
     subject = models.CharField(max_length=50)
+    def __str__(self): 
+         return self.fName+" "+self.lName
 
 class Student(models.Model):
     #id = models.Field(primary_key = True)
@@ -25,3 +27,5 @@ class Student(models.Model):
     SEgrade = models.CharField(max_length=2, default="NA")
     PaSgrade = models.CharField(max_length=2, default="NA")
     DSgrade = models.CharField(max_length=2, default="NA")
+    def __str__(self): 
+         return self.fName+" "+self.lName
