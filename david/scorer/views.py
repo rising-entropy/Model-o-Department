@@ -21,7 +21,8 @@ def landing_page(request, template_name='login.html'):
                     year = studentData.year
                     return student_page(request, year, rollNo)
                 else:
-                    return teacher_main(request)
+                    teacher= Teacher.objects.get(mail=username)
+                    return teacher_main(request,teacher)
         
         else:
             args = {}
@@ -47,8 +48,14 @@ def student_page(request, year, rollNo, template_name='student1.html'):
     
     return render(request, template_name, args2)
 
-def teacher_main(request):
-    return render(request, 'Teacher1.html')
+def teacher_main(request,teacherData,template_name='Teacher1.html'):
+    args2 = {}
+    firNam= teacherData.fName
+    lasNam= teacherData.lName
+    sub= teacherData.subject
+    args2['teacherName']=firNam+" "+lasNam
+    args2['subjectName']=sub
+    return render(request,template_name,args2)
 
 def teacher_create(request):
     return render(request, 'CreateTeach.html')
