@@ -68,5 +68,8 @@ def teacher_list(request):
     args['stus']=stuobj
     return render(request, 'ListTeach.html',args)
 
-def teacher_detail(request):
-    return render(request, 'DetailTeach.html')
+def teacher_detail(request, year, rollno, template_name='DetailTeach.html'):
+    return render(request, template_name, {'year':year, 'rollno': rollno})
+
+def teacher_view(request, year, rollno, template_name='TeacherStudentDetail.html'):
+    return render(request, template_name)
