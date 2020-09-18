@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User, auth, Group
 from django.template.response import TemplateResponse
+from .models import *
+from django.http import *
 
 def landing_page(request, template_name='login.html'):
     if request.method == 'POST':
@@ -13,9 +15,13 @@ def landing_page(request, template_name='login.html'):
             query_set = Group.objects.filter(user = user)
             for g in query_set:
                 if g.name == 'Student':
-                    return render(request, 'student1.html')
+                    #user ka year n rollNo lena hain
+                    studentData = Student.objects.get(mail=username)
+                    rollNo = studentData.rollNo
+                    year = studentData.year
+                    return student_page(request, year, rollNo)
                 else:
-                    return render(request, 'Teacher1.html')
+                    return teacher_main(request)
         
         else:
             args = {}
@@ -25,8 +31,21 @@ def landing_page(request, template_name='login.html'):
     else:
         return render(request,'login.html')
 
-def student_page(request, year, rollNo):
-    return render(request,'student1.html')
+def student_page(request, year, rollNo, template_name='student1.html'):
+    args2 = {}
+    studentObj = Student.objects.filter(rollNo = rollNo, year=year)
+    studentObj = studentObj[0]
+    args2['studentName'] = studentObj.fName + " " + studentObj.lName
+    args2['rollNo'] = studentObj.rollNo
+    args2['branchName'] = studentObj.branch
+    args2['dmMarks'] = studentObj.DMgrade
+    args2['dcMarks'] = studentObj.DCgrade
+    args2['coaMarks'] = studentObj.COAgrade
+    args2['seMarks'] = studentObj.SEgrade
+    args2['pasMarks'] = studentObj.PaSgrade
+    args2['dsMarks'] = studentObj.DSgrade
+    
+    return render(request, template_name, args2)
 
 def teacher_main(request):
     return render(request, 'Teacher1.html')
