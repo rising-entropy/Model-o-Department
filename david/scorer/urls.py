@@ -5,12 +5,9 @@ from . import views
 
 urlpatterns = [
     path('',views.landing_page,name='login_page'),
-    path('student/',views.student_page,name='student_page'),
-    path('teacher/',views.teacher_main,name='teacher_page'),
-    path('teacher/create',views.teacher_create,name='teacher_create'),
-    path('teacher/list',views.teacher_list,name='teacher_list'),
-    path('teacher/detail/',views.teacher_detail,name='teacher_detail')
+    path('student',views.student_page,name='student_page'),
+    path('teacher',views.teacher_main,name='teacher_page'),
+    path('create/<str:mail>',views.teacher_create,name='teacher_create'),
+    path('list',views.teacher_list,name='teacher_list'),
+    path('detail',views.teacher_detail,name='teacher_detail')
 ]
-
-
-

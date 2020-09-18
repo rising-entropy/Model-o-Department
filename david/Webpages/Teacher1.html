@@ -1,35 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Mode</title>
 </head>
+
 <body>
     <h2>Welcome</h2>
     <h3>{{ teacherName }}</h3>
     <h4>{{ subjectName }}</h4>
 
-    <form method="POST" action="teacherAction">
-  <p>Select your Action:</p>
-  <div>
-    <input type="radio" id="create"
-     name="action" value="create">
-    <label for="create">Enter Score For Student.</label><br>
-
-    <input type="radio" id="list"
-     name="action" value="list">
-    <label for="list">Check All Students' Score.</label><br>
-
-    <input type="radio" id="detail"
-     name="action" value="detail">
-    <label for="detail">Check Score of a Particular Student.</label> <br><br>
-  </div>
-  <div>
-    <button type="submit">Submit</button>
-  </div>
-    </form>
-
+    <h2>Actions: </h2>
+    <a href="{% url 'teacher_create' mail%}"><button>Enter Score For Student.</button></a> <br><br>
+    <a href="{% url 'teacher_list' %}"><button>Check All Students' Score.</button></a> <br><br>
+    <a href="{% url 'teacher_detail' %}"><button>Check Score of a Particular Student.</button></a><br>
 
 </body>
 </html>
