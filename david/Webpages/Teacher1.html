@@ -10,11 +10,26 @@
     <h3>{{ teacherName }}</h3>
     <h4>{{ subjectName }}</h4>
 
-    <h5>Actions: </h5>
+    <form method="POST" action="teacherAction">
+  <p>Select your Action:</p>
+  <div>
+    <input type="radio" id="create"
+     name="action" value="create">
+    <label for="create">Enter Score For Student.</label><br>
 
-    <button type="button" class="create">Enter Score For Student.</button>
-    <button type="button" class="list">Check All Students' Score.</button>
-    <button type="button" class="detail">Check Score of a Particular Student.</button>
+    <input type="radio" id="list"
+     name="action" value="list">
+    <label for="list">Check All Students' Score.</label><br>
+
+    <input type="radio" id="detail"
+     name="action" value="detail">
+    <label for="detail">Check Score of a Particular Student.</label> <br><br>
+  </div>
+  <div>
+    <button type="submit">Submit</button>
+  </div>
+    </form>
+
 
 </body>
 </html>
