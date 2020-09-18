@@ -9,7 +9,7 @@ urlpatterns = [
     path('teacher/',views.teacher_main,name='teacher_page'),
     path('teacher/create',views.teacher_create,name='teacher_create'),
     path('teacher/list',views.teacher_list,name='teacher_list'),
-    path('teacher/detail/<int:year>/<int:rollNo>',views.teacher_detail,name='teacher_detail')
+    path('teacher/detail/',views.teacher_detail,name='teacher_detail')
 ]
 
 
