@@ -61,7 +61,10 @@ def teacher_create(request):
     return render(request, 'CreateTeach.html')
 
 def teacher_list(request):
-    return render(request, 'ListTeach.html')
+    args={}
+    stuobj = Student.objects.all()
+    args['stus']=stuobj
+    return render(request, 'ListTeach.html',args)
 
 def teacher_detail(request, year, rollNo):
     return render(request, 'DetailTeach.html')

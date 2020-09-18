@@ -19,19 +19,20 @@
             <td>PaS</td>
             <td>DS</td>
         </tr>
-
-        <!--Use this in the for loop-->
+        {% if stus %}
+        {% for stu in stus %}
         <tr>
-            <td>{{ studentName }}</td>
-            <td>{{ rollNo }}</td>
-            <td>{{ dmMarks }}</td>
-            <td>{{ dcMarks }}</td>
-            <td>{{ coaMarks }}</td>
-            <td>{{ seMarks }}</td>
-            <td>{{ pasMarks }}</td>
-            <td>{{ dsMarks }}</td>
+            <td>{{ stu.fName}} {{stu.lName}}</td>
+            <td>{{ stu.rollNo }}</td>
+            <td>{{ stu.DMgrade }}</td>
+            <td>{{ stu.DCgrade }}</td>
+            <td>{{ stu.COAgrade }}</td>
+            <td>{{ stu.SEgrade  }}</td>
+            <td>{{ stu.PaSgrade }}</td>
+            <td>{{ stu.DSgrade }}</td>
         </tr>
-
+        {% endfor %}
+        {% endif %}
     </table>
 </body>
 </html>
