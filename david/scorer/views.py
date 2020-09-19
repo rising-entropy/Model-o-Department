@@ -5,6 +5,7 @@ from django.template.response import TemplateResponse
 from django.urls import reverse
 from .models import *
 from django.http import *
+from django.views import View
 
 def landing_page(request, template_name='login.html'):
     if request.method == 'POST':
@@ -67,9 +68,33 @@ def teacher_list(request):
     stuobj = Student.objects.all()
     args['stus']=stuobj
     return render(request, 'ListTeach.html',args)
+    
 
-def teacher_detail(request, year, rollno, template_name='DetailTeach.html'):
-    return render(request, template_name, {'year':year, 'rollno': rollno})
+def teacher_view(request, year, rollNo, template_name='TeacherStudentDetail.html'):
+    studentObj = Student.objects.filter(rollNo = rollNo, year=year)
+    studentObj = studentObj[0]
+    context = {}
+    context['studentName'] = studentObj.fName + " " + studentObj.lName
+    context['rollNo'] = studentObj.rollNo
+    context['year'] = studentObj.year
+    context['branchName'] = studentObj.branch
+    context['dmMarks'] = studentObj.DMgrade
+    context['dcMarks'] = studentObj.DCgrade
+    context['coaMarks'] = studentObj.COAgrade
+    context['seMarks'] = studentObj.SEgrade
+    context['pasMarks'] = studentObj.PaSgrade
+    context['dsMarks'] = studentObj.DSgrade
+    
+    return render(request, template_name, context)
 
-def teacher_view(request, year, rollno, template_name='TeacherStudentDetail.html'):
-    return render(request, template_name)
+class teacher_detail(View):
+    def get(self, request):
+        return render(request, 'DetailTeach.html')
+
+    def post(self, request):
+        rollNo = request.POST.get('rollNo')
+        rollNo = int(rollNo)
+        year = request.POST.get('year')
+        year = int(year)
+        return teacher_view(request, year, rollNo)
+

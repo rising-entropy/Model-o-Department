@@ -6,12 +6,13 @@
     <title>Get Student Detail</title>
 </head>
 <body>
-    <form>
-        <label for="RN">Roll No. </label>
-        <input type="text" name="rollno" id="RN" value="{{rollno}}">
+       <form action="detail" method="post">
+        {% csrf_token %}
+        <label for="rollNo">Enter Roll No.</label>
+        <input type="number" name="rollNo" id="rollNo">
         <label for="year">Year. </label>
-        <input type="text" name="year" id="year" value="{{year}}">
-        <a href="{% url 'teacher_view' year rollno %}"><button>Submit</button></a>
+        <input type="number" name="year" id="year">
+        <button type="submit">Submit</button>
     </form>
 </body>
 </html>

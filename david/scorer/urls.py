@@ -9,6 +9,6 @@ urlpatterns = [
     path('teacher',views.teacher_main,name='teacher_page'),
     path('create/<str:mail>',views.teacher_create,name='teacher_create'),
     path('list',views.teacher_list,name='teacher_list'),
-    path('detail',views.teacher_detail,name='teacher_detail'),
-    path('studentscore/<str:year>/<str:rollno>', views.teacher_view, name='teacher_view')
+    path('detail',views.teacher_detail.as_view(),name='teacher_detail'),
+    path('studentscore', views.teacher_view, name='teacher_view')
 ]
