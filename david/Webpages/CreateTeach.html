@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enter Student Score</title>
 </head>
+
 <body>
     <h3>Enter The Score</h3>
     <form action="enterScore" method="post">
         <label for="rollNo">Enter Roll No.: </label>
         <input type="number" name="rollNo" id="rollNo">
         <label for="grade">Enter The Grade: </label>
-        <input type="text" name="grade" id="grade" maxlength="2">
+        <select name="grade" id="grade">
+            <option value="">--Please Select Grade:--</option>
+            <option value="AA">AA</option>
+            <option value="AB">AB</option>
+            <option value="BB">BB</option>
+            <option value="BC">BC</option>
+            <option value="CC">CC</option>
+            <option value="CD">CD</option>
+            <option value="DD">DD</option>
+            <option value="FF">FF</option>
+            <option value="XX1">XX1</option>
+            <option value="XX2">XX2</option>
+        </select>
         <button type="submit">Submit</button>
     </form>
     <br>
@@ -20,7 +34,8 @@
     <p class="RN">Roll Number: {{ rollNo }}</p><br>
     <p class="Subject">Subject: {{ subject }}</p><br>
     <p class="Grade">Grade: {{ grade }}</p><br>
-    
+
 
 </body>
+
 </html>
