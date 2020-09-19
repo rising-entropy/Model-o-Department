@@ -60,8 +60,30 @@ def teacher_main(request, teacherMail, template_name='Teacher1.html'):
     args2['mail'] = teacherObj.mail
     return render(request, template_name, args2)
 
-def teacher_create(request, teacherMail, template_name='CreateTeach.html'):
-    return render(request, template_name, {'mail': teacherMail})
+
+class teacher_create(View):
+    def get(self, request,mail):
+        return render(request, 'CreateTeach.html')
+
+    def post(self, request,mail):
+        rollNo = request.POST.get('rollNo')
+        rollNo = int(rollNo)
+        grade = request.POST.get('grade')
+        grade = int(grade)
+        subject = request.POST.get('subject')
+        subject = str(subject)
+        # teacherObj = Teacher.objects.filter(mail=mail)
+        # if teacherObj == subject:
+        return teacherUpdate_view(request, grade, rollNo,subject)
+
+def teacherUpdate_view(request, grade, rollNo,subject, template_name='TeacherUpdate.html'):
+    Student.objects.filter(rollNo = rollNo).update( grade =grade)
+    args = {
+        'grade': grade,
+        'rollNo': rollNo,
+        'subject':subject
+    }
+    return render(request, template_name,args)
 
 def teacher_list(request):
     args={}

@@ -8,19 +8,14 @@
 <body>
     <h3>Enter The Score</h3>
     <form action="enterScore" method="post">
+        {% csrf_token %}
         <label for="rollNo">Enter Roll No.: </label>
         <input type="number" name="rollNo" id="rollNo">
         <label for="grade">Enter The Grade: </label>
         <input type="text" name="grade" id="grade" maxlength="2">
+        <label for="subject">Enter The Subject: </label>
+        <input type="text" name="subject" id="subject" maxlength="20">
         <button type="submit">Submit</button>
     </form>
-    <br>
-    <br>
-    <h4>Entered Data: </h4>
-    <p class="RN">Roll Number: {{ rollNo }}</p><br>
-    <p class="Subject">Subject: {{ subject }}</p><br>
-    <p class="Grade">Grade: {{ grade }}</p><br>
-    
-
 </body>
 </html>
