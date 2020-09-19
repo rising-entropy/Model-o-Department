@@ -60,8 +60,48 @@ def teacher_main(request, teacherMail, template_name='Teacher1.html'):
     args2['mail'] = teacherObj.mail
     return render(request, template_name, args2)
 
-def teacher_create(request, teacherMail, template_name='CreateTeach.html'):
-    return render(request, template_name, {'mail': teacherMail})
+class teacher_create(View):
+    def get(self, request, mail, template_name='CreateTeach.html'):
+        context = {}
+        context['mail'] = mail
+        return render(request, template_name, context)
+
+    def post(self, request, mail, template_name='CreateTeach.html'):
+        rollNo = request.POST.get('rollNo')
+        grade = request.POST.get('grade')
+        email = request.POST.get('mail')
+        year = request.POST.get('year')
+        teacherObj = Teacher.objects.filter(mail=email)
+        teacherObj = teacherObj[0]
+        stud = Student.objects.get(year=year, rollNo=rollNo)
+        stud = stud.mail
+        if teacherObj.subject == 'Discrete Mathematics':
+            Student.objects.filter(mail=stud).update( DMgrade = grade )
+            subject = 'Discrete Mathematics'
+        elif teacherObj.subject == 'Data Communication':
+            Student.objects.filter(mail=stud).update( DCgrade = grade )
+            subject = 'Data Communication'
+        elif teacherObj.subject == 'Probability and Statistics':
+            Student.objects.filter(mail=stud).update( POSgrade = grade )
+            subject = 'Probability and Statistics'
+        elif teacherObj.subject == 'Data Structures':
+            Student.objects.filter(mail=stud).update( DSgrade = grade )
+            subject = 'Data Structures'
+        elif teacherObj.subject == 'Computer Organisation Architecture':
+            Student.objects.filter(mail=stud).update( COAgrade = grade )
+            subject = 'Computer Organisation Architecture'
+        elif teacherObj.subject == 'Software Engineering':
+            Student.objects.filter(mail=stud).update( SEgrade = grade )
+            subject = 'Software Engineering'
+
+        args1 = {
+            'grade': grade,
+            'rollNo': rollNo,
+            'subject':subject,
+            'year': year
+        }
+        return render(request, template_name, args1)
+
 
 def teacher_list(request):
     args={}

@@ -9,9 +9,12 @@
 
 <body>
     <h3>Enter The Score</h3>
-    <form action="enterScore" method="post">
+    <form action="create" method="post">
+    {% csrf_token %}
         <label for="rollNo">Enter Roll No.: </label>
         <input type="number" name="rollNo" id="rollNo">
+        <label for="year">Enter Year: </label>
+        <input type="number" name="year" id="year">
         <label for="grade">Enter The Grade: </label>
         <select name="grade" id="grade">
             <option value="">--Please Select Grade:--</option>
@@ -26,12 +29,15 @@
             <option value="XX1">XX1</option>
             <option value="XX2">XX2</option>
         </select>
+        <input type="hidden" name="mail" value="{{ mail }}">
         <button type="submit">Submit</button>
     </form>
+
     <br>
     <br>
     <h4>Entered Data: </h4>
     <p class="RN">Roll Number: {{ rollNo }}</p><br>
+    <p class="yr">Roll Number: {{ year }}</p><br>
     <p class="Subject">Subject: {{ subject }}</p><br>
     <p class="Grade">Grade: {{ grade }}</p><br>
 
