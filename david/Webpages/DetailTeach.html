@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get Student Detail</title>
 </head>
+
 <body>
-       <form action="detail" method="post">
+<h3>Enter Data for Score of Individual Student.</h3>
+<h4>{{ errorStatement }}</h4>
+    <form action="detail" method="post">
         {% csrf_token %}
         <label for="rollNo">Enter Roll No.</label>
         <input type="number" name="rollNo" id="rollNo">
@@ -15,4 +19,5 @@
         <button type="submit">Submit</button>
     </form>
 </body>
+
 </html>

@@ -17,7 +17,6 @@ def landing_page(request, template_name='login.html'):
             query_set = Group.objects.filter(user = user)
             for g in query_set:
                 if g.name == 'Student':
-                    #user ka year n rollNo lena hain
                     studentData = Student.objects.get(mail=username)
                     rollNo = studentData.rollNo
                     year = studentData.year
@@ -115,8 +114,13 @@ def teacher_list(request):
     
 
 def teacher_view(request, year, rollNo, template_name='TeacherStudentDetail.html'):
-    studentObj = Student.objects.filter(rollNo = rollNo, year=year)
-    studentObj = studentObj[0]
+    try:
+        studentObj = Student.objects.filter(rollNo = rollNo, year=year)
+        studentObj = studentObj[0]
+    except:
+        args = {}
+        args['errorStatement'] = 'Invalid Creds. Please Try Again'
+        return render(request, 'DetailTeach.html', args)
     context = {}
     context['studentName'] = studentObj.fName + " " + studentObj.lName
     context['rollNo'] = studentObj.rollNo
@@ -128,7 +132,6 @@ def teacher_view(request, year, rollNo, template_name='TeacherStudentDetail.html
     context['seMarks'] = studentObj.SEgrade
     context['pasMarks'] = studentObj.PaSgrade
     context['dsMarks'] = studentObj.DSgrade
-    
     return render(request, template_name, context)
 
 class teacher_detail(View):
