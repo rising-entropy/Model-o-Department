@@ -9,6 +9,7 @@
 
 <body>
     <h3>Enter The Score</h3>
+    <h4>{{ errorStatement }}</h4>
     <form action="create" method="post">
     {% csrf_token %}
         <label for="rollNo">Enter Roll No.: </label>

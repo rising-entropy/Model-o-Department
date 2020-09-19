@@ -73,7 +73,12 @@ class teacher_create(View):
         year = request.POST.get('year')
         teacherObj = Teacher.objects.filter(mail=email)
         teacherObj = teacherObj[0]
-        stud = Student.objects.get(year=year, rollNo=rollNo)
+        try:
+            stud = Student.objects.get(year=year, rollNo=rollNo)
+        except:
+            args = {}
+            args['errorStatement'] = 'Invalid Creds. Please Try Again'
+            return render(request, template_name, args)
         stud = stud.mail
         if teacherObj.subject == 'Discrete Mathematics':
             Student.objects.filter(mail=stud).update( DMgrade = grade )
@@ -93,7 +98,6 @@ class teacher_create(View):
         elif teacherObj.subject == 'Software Engineering':
             Student.objects.filter(mail=stud).update( SEgrade = grade )
             subject = 'Software Engineering'
-
         args1 = {
             'grade': grade,
             'rollNo': rollNo,
