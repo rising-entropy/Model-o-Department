@@ -60,7 +60,6 @@ def teacher_main(request, teacherMail, template_name='Teacher1.html'):
     args2['mail'] = teacherObj.mail
     return render(request, template_name, args2)
 
-
 class teacher_create(View):
     def get(self, request,mail):
         return render(request, 'CreateTeach.html')
@@ -70,20 +69,35 @@ class teacher_create(View):
         rollNo = int(rollNo)
         grade = request.POST.get('grade')
         grade = int(grade)
-        subject = request.POST.get('subject')
-        subject = str(subject)
-        # teacherObj = Teacher.objects.filter(mail=mail)
-        # if teacherObj == subject:
-        return teacherUpdate_view(request, grade, rollNo,subject)
+        return teacherUpdate_view(request,rollNo,grade,mail)
 
-def teacherUpdate_view(request, grade, rollNo,subject, template_name='TeacherUpdate.html'):
-    Student.objects.filter(rollNo = rollNo).update( grade =grade)
-    args = {
+def teacherUpdate_view(request, rollNo,grade,mail,template_name='TeacherUpdate.html'):
+    teacherObj = Teacher.objects.filter(mail=mail)
+    if teacherObj.subject == 'Discrete Mathematics':
+        Student.objects.filter(rollNo = rollNo).update( DMgrade = grade )
+        subject = 'Discrete Mathematics'
+    elif teacherObj.subject == 'Data Communication':
+        Student.objects.filter(rollNo = rollNo).update( DCgrade = grade )
+        subject = 'Data Communication'
+    elif teacherObj.subject == 'Probability and Statistics':
+        Student.objects.filter(rollNo = rollNo).update( POSgrade = grade )
+        subject = 'Probability and Statistics'
+    elif teacherObj.subject == 'Data Structures':
+        Student.objects.filter(rollNo = rollNo).update( DSgrade = grade )
+        subject = 'Data Structures'
+    elif teacherObj.subject == 'Computer Organisation Architecture':
+        Student.objects.filter(rollNo = rollNo).update( COAgrade = grade )
+        subject = 'Computer Organisation Architecture'
+    elif teacherObj.subject == 'Software Engineering':
+        Student.objects.filter(rollNo = rollNo).update( SEgrade = grade )
+        subject = 'Software Engineering'
+
+    args1 = {
         'grade': grade,
         'rollNo': rollNo,
         'subject':subject
     }
-    return render(request, template_name,args)
+    return render(request, template_name,args1)
 
 def teacher_list(request):
     args={}

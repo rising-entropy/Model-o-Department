@@ -7,14 +7,12 @@
 </head>
 <body>
     <h3>Enter The Score</h3>
-    <form action="enterScore" method="post">
+    <form action="kala" method="post">
         {% csrf_token %}
         <label for="rollNo">Enter Roll No.: </label>
         <input type="number" name="rollNo" id="rollNo">
         <label for="grade">Enter The Grade: </label>
         <input type="text" name="grade" id="grade" maxlength="2">
-        <label for="subject">Enter The Subject: </label>
-        <input type="text" name="subject" id="subject" maxlength="20">
         <button type="submit">Submit</button>
     </form>
 </body>
