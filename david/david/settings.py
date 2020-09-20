@@ -79,17 +79,11 @@ WSGI_APPLICATION = 'david.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-alps = 'BILCuXF6qqQTzooELZx'
-paci = 'Q1_AQHn79Hn1d'
-passw = alps+paci
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'odljqilk',
-        'HOST': 'satao.db.elephantsql.com',
-        'USER': 'odljqilk',
-        'PASSWORD': passw,
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
